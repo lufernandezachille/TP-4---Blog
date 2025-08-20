@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio</title>
+  {% load static %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <div id="pantalla-inicial">
+    <div class="logo-nombre">  
+    <img src="logo.png" alt="Logo" />  
+    <h1>Lucila Fernandez Achille</h1>
+    </div>
+  </div>
+
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-icon">☰</label>
+
+  <main class="page-wrapper">
+    <section id="inicio">
+      <nav class="side-menu">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobremi">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <div class="tema-toggle">
+            <button id="toggle-theme" title="Cambiar tema">
+              <i class="fas fa-moon"></i>
+              <span class="texto-tema">Modo oscuro</span>
+            </button>
+          </div>
+        </ul>
+      </nav>
+    </section>
+    
+    <div class="progress-bar">
+      <a href="#inicio" class="dot" data-index="0"></a>
+      <a href="#sobremi" class="dot" data-index="1"></a>
+      <a href="#proyectos" class="dot" data-index="2"></a>
+      <a href="#contacto" class="dot" data-index="3"></a>
+    </div>
+  
+    <section class="section" id="inicio">
+      <header>
+        <h1><span class="linea1" style="display: block;">Hola, mi </span>
+        <span class="linea2" style="display: block;">nombre es <b><span class="brillante">Lucila</span></b>.</span></h1>
+      </header>
+    </section>
+  
+    <section class="section sobre-mi" id="sobre-mi">
+      <div class="contenido">
+        <h2>Sobre mí</h2>
+
+        <div class="sobre-mi-cards">
+          <div class="sobre-mi-card">
+            <i class="fas fa-user coder-icon"></i>
+            <h3>Quién soy</h3>
+            <p>Hola, soy Lucila Fernandez Achille, estudiante de informática con pasión por crear experiencias digitales únicas y funcionales. Nací en Buenos Aires, Argentina, el 6 de noviembre del 2008. Estudio en el Instituto Industrial Luis A. Huergo desde el 2022.</p>
+          </div>
+
+          <div class="sobre-mi-card">
+            <i class="fas fa-laptop-code coder-icon"></i>
+            <h3>Mis habilidades</h3>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> HTML, CSS, JavaScript</li>
+              <li><i class="fas fa-check-circle"></i> Python, Pygame, C++, QBasic</li>
+              <li><i class="fas fa-check-circle"></i> Git & GitHub</li>
+              <li><i class="fas fa-check-circle"></i> Diseño web y UX</li>
+              <li><i class="fas fa-check-circle"></i> Photoshop</li>
+            </ul>
+          </div>
+
+          <div class="sobre-mi-card">
+            <i class="fas fa-rocket coder-icon"></i>
+            <h3>Mi misión</h3>
+            <p>Crear proyectos que combinan creatividad y tecnología, aportando soluciones atractivas y útiles.</p>
+          </div>
+
+          <div class="sobre-mi-card">
+            <h3>Mi CV</h3>
+            <p>Conocé más sobre mí descargando o visualizando mi currículum.</p>
+            <img src="cv.jpg" alt="Vista previa del CV" class="preview-img clickable-img">
+            <div class="cv-botones">
+              <a href="cv.pdf" download class="btn-descargar">Descargar PDF</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section proyectos" id="proyectos">
+      <div class="contenido">
+        <h2>Proyectos</h2>
+        <p class="subtitulo">Algunos de los trabajos que reflejan lo que hago</p>
+
+        <div class="proyectos-scroll">
+          <div class="card">
+            <i class="fas fa-code project-icon"></i>
+            <h3>TP 1 - Space Invaders</h3>
+            <img src="spaceinvaders.png" alt="Captura del juego Space Invaders" class="preview-img">
+            <p>Juego en Python con Pygame. Recreación del clásico arcade.</p>
+            <a href="https://github.com/lufernandezachille/TP-1---Space-Invaders.git" target="_blank">Ver en GitHub</a>
+          </div>
+
+          <div class="card">
+            <i class="fas fa-image project-icon"></i>
+            <h3>Diseño gráfico #1</h3>
+            <p>Corrección de imperfecciones hecha con Photoshop.</p>
+            <img src="TP5 - Corrección de imperfecciones del rostro.jpg" alt="Diseño 1" class="preview-img clickable-img">
+          </div>
+
+          <div class="card">
+            <i class="fas fa-image project-icon"></i>
+            <h3>Diseño gráfico #2</h3>
+            <p>Diseño de packaging hecho en Photoshop.</p>
+            <img src="TP 6.jpg" alt="Diseño 2" class="preview-img clickable-img">
+          </div>
+
+          <div class="card">
+            <i class="fas fa-image project-icon"></i>
+            <h3>Diseño gráfico #2</h3>
+            <p>Afiche de película hecho en Photoshop.</p>
+            <img src="TP 8 - Diseño de afiche.jpg" alt="Diseño 2" class="preview-img clickable-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section contacto" id="contacto">
+      <br>
+      <div class="contenido">
+        <h2>Contactame</h2>
+        <form class="formulario-contacto">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+          <button type="submit">Enviar</button>
+        </form>
+
+        <div class="footer">
+          <h5>Encontrame también en:</h5>
+          <div class="iconos-redes">
+            <a href="mailto:lucilafernandezachille@gmail.com" target="_blank" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://instagram.com/lufachille" target="_blank" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com/lfernandezachille" target="_blank" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://github.com/lufernandezachille" target="_blank" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    
+  </main>
+
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+  </div>
+  <script src="{% static 'portfolio/script.js' %}"></script>
+
+</body>
+</html>
