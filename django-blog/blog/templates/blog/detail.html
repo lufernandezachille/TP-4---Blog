@@ -1,38 +1,73 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block page_title %}
-    <h2>{{ post.title }}</h2>
-{% endblock page_title %}
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+{% endblock head_extra %}
 
 {% block page_content %}
-    <small>
-        {{ post.created_on.date }} | Categories:
-        {% for category in post.categories.all %}
-            <a href="{% url 'blog_category' category.name %}">
-                {{ category.name }}
-            </a>
-        {% endfor %}
-    </small>
-    <p>{{ post.body | linebreaks }}</p>
-    <h3>Leave a comment:</h3>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            {{ form.author }}
-        </div>
-        <div>
-            {{ form.body }}
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<input type="checkbox" id="menu-toggle">
+<label class="menu-icon" for="menu-toggle">&#9776;</label>
 
-    <h3>Comments:</h3>
-    {% for comment in comments %}
-        <p>
-            On {{ comment.created_on.date }} <b>{{ comment.author }}</b> wrote:
-        </p>
-        <p>
-            {{ comment.body | linebreaks }}
-        </p>
-    {% endfor %}
+<div class="page-wrapper">
+    <nav class="side-menu">
+        <ul>
+            <li><a href="{% url 'portfolio_home' %}">Volver al Portfolio</a></li>
+            <li><a href="{% url 'blog_index' %}">Todos los Posts</a></li>
+            <li>
+                Categorías:
+                {% for category in categories %}
+                    <a href="{% url 'blog_category' category.name %}">{{ category.name }}</a>
+                {% endfor %}
+            </li>
+            <li><button id="btn-tema">🌞 / 🌙 Cambiar modo</button></li>
+        </ul>
+    </nav>
+
+    <div class="contenido post-detail">
+        <!-- Post completo -->
+        <article class="post-card full-post">
+            <div class="post-header">
+                <h1 class="post-title">{{ post.title }}</h1>
+                <div class="post-meta">
+                    <small>{{ post.created_on.date }}</small> |
+                    {% for category in post.categories.all %}
+                        <a href="{% url 'blog_category' category.name %}">{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+                <img class="post-image" src="{{ post.image.url }}" alt="{{ post.title }}">
+            </div>
+
+            <section class="post-body">
+                {{ post.body | linebreaks }}
+            </section>
+        </article>
+
+        <!-- Comentarios existentes -->
+        <section class="comments-section">
+            <h2>Comentarios</h2>
+            {% for comment in comments %}
+            <div class="comment-card">
+                <p><b>{{ comment.author }}</b> escribió el {{ comment.created_on.date }}:</p>
+                <p>{{ comment.body | linebreaks }}</p>
+            </div>
+            {% empty %}
+                <p>No hay comentarios aún.</p>
+            {% endfor %}
+        </section>
+
+        <!-- Formulario de nuevo comentario -->
+        <section class="new-comment">
+            <h3>Dejar un comentario</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div>{{ form.author }}</div>
+                <div>{{ form.body }}</div>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </div>
+</div>
+
+<script src="{% static 'blog/script.js' %}"></script>
 {% endblock page_content %}

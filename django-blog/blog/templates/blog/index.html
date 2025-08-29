@@ -1,22 +1,59 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+{% endblock extra_css %}
+
 {% block page_title %}
-    <h2>Blog Posts</h2>
+    <h2 class="blog-title">Blog Posts</h2>
 {% endblock page_title %}
 
 {% block page_content %}
-    {% block posts %}
-        {% for post in posts %}
-            <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
-            <small>
-                {{ post.created_on.date }} | Categories:
-                {% for category in post.categories.all %}
-                    <a href="{% url 'blog_category' category.name %}">
-                        {{ category.name }}
-                    </a>
-                {% endfor %}
-            </small>
-            <p>{{ post.body | slice:":400" }}...</p>
-        {% endfor %}
-    {% endblock posts %}
+
+<input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+ <div class="page-wrapper">
+    <nav class="side-menu">
+        <ul>
+            <li><strong>Categorías</strong></li>
+            {% for category in all_categories %}
+                <li><a href="{% url 'blog_category' category.name %}">{{ category.name }}</a></li>
+            {% endfor %}
+            <li><a href="{% url 'portfolio_home' %}">Volver al Portfolio</a></li>
+            <li>
+                <div class="tema-toggle">
+                    <button id="btn-tema">🌞 / 🌙 Cambiar modo</button>
+                </div>
+            </li>
+        </ul>
+    </nav>
+        
+    <section class="blog-posts">
+        {% block posts %}
+            {% for post in posts %}
+                <article class="post-card">
+                    <h3 class="post-title">
+                        <a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a>
+                    </h3>
+                    <div class="post-meta">
+                        <small>{{ post.created_on.date }}</small> |
+                        <span class="categories">
+                            Categories:
+                            {% for category in post.categories.all %}
+                                <a href="{% url 'blog_category' category.name %}" class="category-link">
+                                    {{ category.name }}
+                                </a>
+                            {% endfor %}
+                        </span>
+                    </div>
+                    <p class="post-excerpt">{{ post.body|slice:":400" }}...</p>
+                    <a href="{% url 'blog_detail' post.pk %}" class="read-more-btn">Leer más</a>
+                </article>
+            {% endfor %}
+        {% endblock posts %}
+    </section>
+</div>
+<script src="{% static 'blog/script.js' %}"></script>
 {% endblock page_content %}
